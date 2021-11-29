@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Diffusion Autoencoders: Toward a Meaningful and Decodable Representation</title>
+    <link rel="stylesheet" href="data/scripts/bulma.min.css">
+    <style>
+      .black-frame{
+        height: calc(100% - 0.3rem);
+        background: #171617;
+        width: 100%;
+        display : flex;
+        align-items : center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="hero is-dark">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+          Diffusion Autoencoders: Toward a Meaningful and Decodable Representation
+          </h1>
+          <h2 class="subtitle">
+          Supplementary material - Paper ID 4818
+          </h2>
+        </div>
+      </div>
+    </section>
+    <section class="hero">
+      <div class="container" style="color:white">
+        <img src="data/image/teaser.png"  >
+        Attribute manipulation and interpolation on real input images. Our diffusion autoencoders can encode any image into a meaningful latent code that can be interpolated or modified by a simple linear operation and decoded back to a highly realistic output.
+      </div>
+    </section>
+    <section class="section" style="background-color:#171617">
+      <div class="container" style="color:white">
+        <h1 class="title"style="color:white">
+          Abstract
+        </h1>
+        Diffusion probabilistic models (DPMs) have achieved remarkable quality in image generation that rivals GANs'. But unlike GANs, DPMs use a set of latent variables that lack semantic meaning and cannot serve as a useful representation for other tasks. 
+        This paper explores the possibility of using DPMs for representation learning and seeks to extract a meaningful and decodable representation of an input image via autoencoding. Our key idea is to use a learnable encoder for discovering the high-level semantics, and a DPM as the decoder for modeling the remaining stochastic variations. 
+        Our method can encode any image into a two-part latent code, where the first part is semantically meaningful and linear, and the second part captures stochastic details, allowing near-exact reconstruction. This capability enables challenging applications that currently foil GAN-based methods, such as attribute manipulation on real images. We also show that this two-level encoding improves denoising efficiency and naturally facilitates various downstream tasks including few-shot conditional sampling.
+      </div>
+    </section>
+
+    <section class="hero ">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            Comparisons
+          </h1>
+          <div class="columns is-desktop">
+            <div class="column">
+              <a href="data/shiny.html">
+                <div class="card">
+                  <div class="card-image">
+                    <figure class="image is-4by3">
+                      <img src="data/images/saneh_jaan2/024_gt.jpg" alt="Shiny dataset">
+                    </figure>
+                  </div>
+                  <div class="card-content">
+                    <div class="media">
+                      <div class="media-left">
+                      </div>
+                      <div class="media-content">
+                        <p class="title is-4"> Shiny dataset</p>
+                        <p class="subtitle is-6">challenging view-dependent effects</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="column">
+              <a href="data/frontface.html">
+                <div class="card">
+                  <div class="card-image">
+                    <figure class="image is-4by3">
+                      <img src="data/images/fern/016_gt.jpg" alt="Real forward-facing dataset">
+                    </figure>
+                  </div>
+                  <div class="card-content">
+                    <div class="media">
+                      <div class="media-left">
+                      </div>
+                      <div class="media-content">
+                        <p class="title is-4"> Real forward-facing dataset</p>
+                        <p class="subtitle is-6">[Mildenhall et al. 2020]</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="column">
+              <a href="data/space.html">
+                <div class="card">
+                  <div class="card-image">
+                    <figure class="image is-4by3">
+                      <img src="data/images/scene_000/cam07_gt.jpg" alt="Spaces dataset">
+                    </figure>
+                  </div>
+                  <div class="card-content">
+                    <div class="media">
+                      <div class="media-left">
+                      </div>
+                      <div class="media-content">
+                        <p class="title is-4"> Spaces dataset</p>
+                        <p class="subtitle is-6">[Flynn et al. 2019]</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero is-primary" style="text-align: center;">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            Additional results
+          </h1>
+          <p class="title is-4">
+            Latent interpolation on FFHQ
+          </p>
+          <video controls autoplay loop width="256" src="data/image/interpolation/ffhq1.mp4" autoplay muted>
+          </video>
+          <video controls autoplay loop width="256" src="data/image/interpolation/ffhq2.mp4" autoplay muted>
+          </video>
+          <video controls autoplay loop width="256" src="data/image/interpolation/ffhq3.mp4" autoplay muted>
+          </video>
+          <video controls autoplay loop width="256" src="data/image/interpolation/ffhq4.mp4" autoplay muted>
+          </video>
+
+          <p class="title is-4">
+            Latent interpolation on LSUN bedroom dataset
+          </p>
+          <video controls autoplay loop width="256" src="data/image/interpolation/bed1.mp4" autoplay muted>
+          </video>
+          <video controls autoplay loop width="256" src="data/image/interpolation/bed2.mp4" autoplay muted>
+          </video>
+          <video controls autoplay loop width="256" src="data/image/interpolation/bed3.mp4" autoplay muted>
+          </video>
+          <video controls autoplay loop width="256" src="data/image/interpolation/bed4.mp4" autoplay muted>
+          </video>
+
+          <p class="title is-4">
+            Latent interpolation on LSUN horse dataset
+          </p>
+          <video controls autoplay loop width="256" src="data/image/interpolation/horse1.mp4" autoplay muted>
+          </video>
+          <video controls autoplay loop width="256" src="data/image/interpolation/horse2.mp4" autoplay muted>
+          </video>
+          <video controls autoplay loop width="256" src="data/image/interpolation/horse3.mp4" autoplay muted>
+          </video>
+          <video controls autoplay loop width="256" src="data/image/interpolation/horse4.mp4" autoplay muted>
+          </video>
+
+        </div>
+      </div>
+    </section>
+    <section class="hero is-dark" style="background-color: #525659;text-align: center;">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            Supplementary details and results
+          </h1>
+          <a href="data/pdf/8458_supplementary.pdf" target="_blank" class="button is-primary">Download PDF</a>
+
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
