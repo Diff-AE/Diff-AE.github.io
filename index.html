@@ -637,7 +637,7 @@
       <div class="container" style="text-align: center; margin-top: 50px;">
         <h1 class="title shead">Attribute manipulation on <span style="color: #750d0d">REAL</span> images</h1>
       <div class="container" style="max-width:900px; text-align: left;">
-        To change the attributes of an input image, we simply encode the input image to our latent code, add the vector corresponding to the target change, and decode it back. The results shown below do not involve any image blending or post-processing. Unlike GANs, our method requires no inversion to manipulate real images and can capture original details.</div>
+        To change the attributes of an input image, we simply encode the input image to our latent code, add the vector corresponding to the target change, and decode it back. The results shown below do not involve any image blending or post-processing. Unlike GANs, our method requires no inversion to manipulate real images and can preserve the original details of the input image at an unprecedented level.</div>
         <!--<h2 class="title shead">Smiling</h2>-->
         <div id="am_smiling" class="attable"></div>
         <button class="button-7 moreresults" role="button">More Results!</button>
@@ -655,7 +655,8 @@
       <div class="container" style="text-align: center; margin-top: 80px" id="interpolation">
         <h1 class="title shead">Real-image interpolation</h1>
         <div class="container" style="max-width:900px; text-align: left;">
-          To interpolate between two real images, we encode both images to their latent codes, compute a weighted sum of the codes, and decode the result back to an image.
+          To interpolate between two real images, we encode both images to their latent codes, compute a weighted sum of the codes, and decode the result back to an image. Both end points look ~exactly like the two input images, while the interpolation smoothly morphes between the two.
+        
         </div>
         <h2 class="title shead">FFHQ-256</h2>
         <div id="inter_ffhq" ></div>
