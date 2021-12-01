@@ -208,8 +208,7 @@
   display: none;
 }
       #interpolation img, video {
-        width: 175px;
-        height: 175px;
+        max-width: 175px;
       }
       #uncond img {
         display: block;
@@ -226,6 +225,7 @@
   <script>
     //const path = "./data/manipulation_Tinv500_Tgen100/";
     const path = "./data/website_results/";
+    const path2 = "./data/image/";
     const IMG_SIZE = 175;
 
     let animid = 0;
@@ -310,6 +310,43 @@
       ]
     };
 
+    const ffhq = {
+      name: "FFHQ",
+      folder: "interpolate_ffhq",
+      list: [
+        "img0",
+        "img1",
+        "img2",
+        "img3",
+        "img4",
+        "img5",
+      ]
+    };
+
+    const horse = {
+      name: "Horse",
+      folder: "interpolate_horse",
+      list: [
+        "img0",
+        "img1",
+        "img2",
+        "img4",
+        "img5",
+      ]
+    };
+
+    const bed = {
+      name: "Bedroom",
+      folder: "interpolate_bed",
+      list: [
+        "img23",
+        "img17",
+        "img2",
+        "img4",
+        "img5",
+      ]
+    };
+
     function genTable2(attr) {
       let out = "";
       const width = IMG_SIZE;
@@ -319,14 +356,20 @@
       for (let i = 0; i < text.length; i++) {
         out += `<span class='tablehead' style='width: ${width}px;'>${text[i]}</span>`;
       }
+      /*
+      out += "<table><tr style='text-align: center'>";
+      for (let i = 0; i < text.length; i++) {
+        out += `<td style='width: ${width}px;'>${text[i]}</td>`;
+      }
+      out += "<tr/></table>";*/
       let count = 0;
       for (let item of attr["list"]) {
         if (++count > 2) {
           out += "<div class='hide'>";
         } else {
-          out += "<div>";
+          out += "<div style='white-space: nowrap'>";
         }
-        out += `<img src='${path}${attr["prefix"]}-${item}.png' style='height: ${width}px;' class='imgresult'>`;
+        out += `<img src='${path}${attr["prefix"]}-${item}.png' style='max-height: ${width}px' class='imgresult'>`;
         out += `<video style="margin-left: 6px;" loop src="${path}${attr["prefix"]}-${item}.mp4" autoplay muted></video>`;
         out += `</div>`;
       }
@@ -339,6 +382,34 @@
       return out;
     }
 
+
+    function genTable3(attr, width) {
+      let out = "";
+      const text = [`image 1`, `interpolation`, `image 2`];
+
+      for (let i = 0; i < text.length; i++) {
+        out += `<span class='tablehead' style='width: ${width}px;'>${text[i]}</span>`;
+      }
+      let count = 0;
+      for (let item of attr["list"]) {
+        if (++count > 3) {
+          out += "<div class='hide'>";
+        } else {
+          out += "<div>";
+        }
+        out += `<img src='${path2}${attr["folder"]}/${item}_a.png' style='height: ${width}px;'>`;
+        out += `<video style="margin-left: 6px; height: ${width}px" loop src="${path2}${attr["folder"]}/${item}.mp4" autoplay muted></video>  `;
+        out += `<img src='${path2}${attr["folder"]}/${item}_b.png' style='height: ${width}px;' >`;
+        out += `</div>`;
+      }
+
+      /*
+      $('<img src="">').attr("src", `${path}${attr["list"][0]}/strip.jpg`).on('load', function(){
+        animN = this.width / this.height - 1;
+        console.log("animN", animN);
+      })*/
+      return out;
+    }
 
     function genTable(attr) {
       let out = "";
@@ -462,6 +533,9 @@
 
       $("#am_wavy").html(genTable2(wavy));
       $("#am_male").html(genTable2(male));
+      $("#inter_ffhq").html(genTable3(ffhq, 175));
+      $("#inter_horse").append(genTable3(horse, 110));
+      $("#inter_bed").append(genTable3(bed, 110));
       $("#uncon_ffhq256").html(gen_unconditional("ffhq256"));
       $("#uncon_horse128").html(gen_unconditional("horse128"));
       $("#uncon_bedroom128").html(gen_unconditional("bedroom128"));
@@ -551,7 +625,7 @@
   </section>  
   <section class="hero">
     <div class="hero-body">
-      <div class="container" style="width:1100px; text-align: center; margin-top: 50px;">
+      <div class="container" style="text-align: center; margin-top: 50px;">
         <h1 class="title shead">Attribute manipulation on <span style="color: #750d0d">REAL</span> images</h1>
       <div class="container" style="max-width:900px; text-align: left;">
         To change the attributes of an input image, we simply encode the input image to our latent code, add the vector corresponding to the target change, and decode it back. The results shown below do not involve any image blending or post-processing. Unlike GANs, our method requires no inversion to manipulate real images and can capture original details.</div>
@@ -569,64 +643,30 @@
   </section>
   <section class="hero">
     <div class="hero-body">
-      <div class="container" style="width:1100px; text-align: center; margin-top: 100px" id="interpolation">
+      <div class="container" style="text-align: center; margin-top: 80px" id="interpolation">
         <h1 class="title shead">Real-image interpolation</h1>
         <div class="container" style="max-width:900px; text-align: left;">
           To interpolate between two real images, we encode both images to their latent codes, compute a weighted sum of the codes, and decode the result back to an image.
         </div>
         <h2 class="title shead">FFHQ-256</h2>
-        <table align="center" width="525px">
-          <tr>
-            <td>
-              image 1
-            </td>
-            <td>
-              interlpolation
-            </td>
-            <td>
-              image 2
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <img src="data/image/interpolate_ffhq/img0_a.png">
-            </td>
-            <td>
-              <video loop src="data/image/interpolate_ffhq/img0.mp4" autoplay muted></video>
-            </td>
-            <td>
-              <img src="data/image/interpolate_ffhq/img0_b.png">
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <img src="data/image/interpolate_ffhq/img1_a.png">
-            </td>
-            <td>
-              <video loop src="data/image/interpolate_ffhq/img1.mp4" autoplay muted></video>
-            </td>
-            <td>
-              <img src="data/image/interpolate_ffhq/img1_b.png">
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <img src="data/image/interpolate_ffhq/img2_a.png">
-            </td>
-            <td>
-              <video loop src="data/image/interpolate_ffhq/img2.mp4" autoplay muted></video>
-            </td>
-            <td>
-              <img src="data/image/interpolate_ffhq/img2_b.png">
-            </td>
-          </tr>
-        </table>
+        <div id="inter_ffhq" ></div>
+        <div class="clear"></div>
+
+        <div class="container" style="max-width:900px;">
+          <div id="inter_horse" style="float: left">
+          <h2 class="title shead">LSUN horse-128</h2>
+          </div>
+          <div id="inter_bed" style="float: right">
+          <h2 class="title shead">LSUN bedroom-128</h2>
+          </div>
+        </div>
+        <div class="clear"></div>
       </div>
     </div>
   </section>
   <section class="hero">
     <div class="hero-body">
-      <div class="container" style="width:980px; text-align: center; margin-top: 100px;" id="uncond">
+      <div class="container" style="max-width:980px; text-align: center; margin-top: 80px;" id="uncond">
         <h1 class="title shead">Unconditional Sampling</h1>
         By fitting the latent distribution with another diffusion model, our diffusion autoencoder can also synthesize images unconditionally.
 
