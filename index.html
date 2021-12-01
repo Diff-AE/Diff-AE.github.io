@@ -217,6 +217,11 @@
       .clear {
         clear: both;
       }
+      hr {
+          height: 20px;
+    box-shadow: inset 0 20px 20px -20px rgba(0, 0, 0, 0.15);
+      background-color: white;
+      }
 
   </style>
 
@@ -632,9 +637,10 @@
       </div>
     </div>
   </section>  
+  <hr>
   <section class="hero">
     <div class="hero-body">
-      <div class="container" style="text-align: center; margin-top: 50px;">
+      <div class="container" style="text-align: center; margin-top: 15px;">
         <h1 class="title shead">Attribute manipulation on <span style="color: #750d0d">REAL</span> images</h1>
       <div class="container" style="max-width:900px; text-align: left;">
         To change the attributes of an input image, we simply encode the input image to our latent code, add the vector corresponding to the target change, and decode it back. The results shown below do not involve any image blending or post-processing. Unlike GANs, our method requires no inversion to manipulate real images and can preserve the original details of the input image at an unprecedented level.</div>
@@ -650,9 +656,10 @@
       </div>
     </div>
   </section>
+  <hr>
   <section class="hero">
     <div class="hero-body">
-      <div class="container" style="text-align: center; margin-top: 80px" id="interpolation">
+      <div class="container" style="text-align: center; margin-top: 15px" id="interpolation">
         <h1 class="title shead">Real-image interpolation</h1>
         <div class="container" style="max-width:900px; text-align: left;">
           To interpolate between two real images, we encode both images to their latent codes, compute a weighted sum of the codes, and decode the result back to an image. Both end points look ~exactly like the two input images, while the interpolation smoothly morphes between the two.
@@ -674,9 +681,10 @@
       </div>
     </div>
   </section>
+  <hr>
   <section class="hero">
     <div class="hero-body">
-      <div class="container" style="max-width:980px; text-align: center; margin-top: 80px;" id="uncond">
+      <div class="container" style="max-width:980px; text-align: center; margin-top: 15px;" id="uncond">
         <h1 class="title shead">Unconditional Sampling</h1>
         By fitting the latent distribution with another diffusion model, our diffusion autoencoder can also synthesize images unconditionally with competitive FID scores compared to a vanilla diffusion model.
 
