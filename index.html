@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Diffusion Autoencoders: Toward a Meaningful and Decodable Representation</title>
   <link rel="stylesheet" href="css/bulma.min.css">
-  <link rel="stylesheet" href="css/splide.min.css">
   <link rel="icon" href="assets/images/icon_32x32.png" type="image/png" sizes="32x32">
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
   <meta property="og:type"               content="article" />
@@ -53,10 +52,6 @@
     .conference-name{
       font-size:  1.5rem;
       padding: 12px;
-    }
-    .slider-container{
-      padding-left: 30px;
-      padding-right: 30px;
     }
     @media only screen and (min-width: 900px) {
       .container.col-max-width {
@@ -225,7 +220,6 @@
 
   </style>
 
-  <script src="assets/scripts/splide.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <script>
     //const path = "./data/manipulation_Tinv500_Tgen100/";
@@ -356,10 +350,10 @@
       let out = "";
       const width = IMG_SIZE;
       const text = [`- ${attr["name"]}`, `<img src='images/arrow.png' style='height: 15px !important;'>`, `<span style='color: #C00000'>Real Input</span>`, `<img src='images/arrow.png' style='height: 15px !important; -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);'>`, `+ ${attr["name"]}`, `&nbsp;&nbsp;&nbsp;Animated`];
+  transform: scaleX(-1);'>`, `+ ${attr["name"]}`, `Animated`];
 
       for (let i = 0; i < text.length; i++) {
-        out += `<span class='tablehead' style='width: ${width}px;'>${text[i]}</span>`;
+        out += `<span class='tablehead' style='max-width: ${width}px; width: 16%; ${i == text.length-1 ? "margin-left: 6px" : ""}'>${text[i]}</span>`;
       }
       /*
       out += "<table><tr style='text-align: center'>";
@@ -374,8 +368,8 @@
         } else {
           out += "<div style='white-space: nowrap'>";
         }
-        out += `<img src='${path}${attr["prefix"]}-${item}.png' style='max-height: ${width}px' class='imgresult'>`;
-        out += `<video style="margin-left: 6px;" loop src="${path}${attr["prefix"]}-${item}.mp4" autoplay muted></video>`;
+        out += `<img src='${path}${attr["prefix"]}-${item}.png' style='max-height: ${width}px; max-width: 80%' class='imgresult'>`;
+        out += `<video style="margin-left: 6px; max-height: ${width}px; max-width: 16%" loop src="${path}${attr["prefix"]}-${item}.mp4" autoplay muted></video>`;
         out += `</div>`;
       }
 
@@ -483,7 +477,7 @@
                "path": "data/Unconditional_Samples/ffhq256_my/",
                "size": 140,
                "row_size":7,
-               "n_img": 28 
+               "n_img": 49
             },
             "bedroom128": {
                 "path": "data/Unconditional_Samples/bedroom128_my/",
@@ -703,6 +697,36 @@
       </div>
     </div>
   </section>
+  <hr>
+  <section class="hero" style="padding-top:0px;">
+    <div class="hero-body">
+      <div class="container" style="max-width:900px;">
+<div class="card">
+  <header class="card-header">
+    <p class="card-header-title">
+      BibTex
+    </p>
+    <a class="card-header-icon button-clipboard" style="border:0px; background: inherit;" data-clipboard-target="#bibtex-info" >
+      <div class="button-clipboard-tooltip">Copied!</div>
+      <span class="icon">
+        <img src="images/copy.svg" style="height: 20px;"/>
+      </span>
+    </a>
+  </header>
+  <div class="card-content">
+<pre style="background-color:inherit;padding: 0px;" id="bibtex-info">
+@misc{preechakul2021diffusion,
+      title={Diffusion Autoencoders: Toward a Meaningful and Decodable Representation}, 
+      author={Konpat Preechakul and Nattanat Chatthee and Suttisak Wizadwongsa and Supasorn Suwajanakorn},
+      year={2021},
+      eprint={2111.15640},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}
+</pre>
+  </div>
+</div>
+  </section>
   <section class="hero" style="background-color: white;">
     <div style="margin: 0px; margin-top: 5px;">
       <div class="container" style="text-align: center; vertica">
@@ -713,6 +737,26 @@
       </div>
     </div>
   </section>
+  <script src="scripts/clipboard.min.js"></script>
+  <script>
+    var clipboard = new ClipboardJS('.button-clipboard');
+    function setTooltip(){
+      var tooltip = document.querySelector('.button-clipboard-tooltip');
+      tooltip.style.display = 'block';
+    }
+    function hideTooltip(){
+      var tooltip = document.querySelector('.button-clipboard-tooltip');
+      tooltip.style.display = 'none';
+    }
+    clipboard.on('success', function(e) {
+      setTooltip(e.trigger, 'Copied!');
+      setTimeout(function(){
+        hideTooltip(e.trigger);
+      }, 2000);
+      
+    });
+    
+  </script>
 </body>
 
 </html>
