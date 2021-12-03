@@ -218,6 +218,15 @@
       background-color: white;
       }
 
+      .tablehead2 {
+        padding-top: 15px;
+      text-align: center;
+      font-size: 16px;
+      font-weight: bold;
+      display: block;
+      float:left;
+        width: 25%;
+      }
   </style>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -374,7 +383,7 @@
       }
 
       /*
-      $('<img src="">').attr("src", `${path}${attr["list"][0]}/strip.jpg`).on('load', function(){
+      $('<img src="">').attr("src", `${path}${attr["list"][0]}/strip.jpg`). style='width: 200px;'on('load', function(){
         animN = this.width / this.height - 1;
         console.log("animN", animN);
       })*/
@@ -631,6 +640,24 @@
       </div>
     </div>
   </section>  
+  <hr>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container" style="text-align: center; margin-top: 15px;">
+        <h1 class="title shead">Autoencoding quality / Varying stochastic subcode</h1>
+        <div class="container" style="max-width:900px; text-align: left;">
+          Our diffusion autoencoder can reconstruct the input image almost exactly from the latent code that consists of two parts: semantic subcode and stochastic subcode. By varying the stochastic subcode and keeping the semantic subcode fixed, stochastic details of the decoded image change but the overall high-level structure remains the same.
+          <div id="stoc" style="text-align: center; max-width: 900px">
+            <span class='tablehead2'>Input</span>
+            <span class='tablehead2'>Reconstructed</span>
+            <span class='tablehead2'>Varying stochastic subcode</span>
+            <span class='tablehead2'>Mean</span>
+            <video style="max-width: 900px;" loop src="images/stoc_avg.mp4" autoplay muted></video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
   <hr>
   <section class="hero">
     <div class="hero-body">
