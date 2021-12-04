@@ -648,10 +648,10 @@
         <div class="container" style="max-width:900px; text-align: left;">
           Our diffusion autoencoder can reconstruct the input image almost exactly from the latent code that consists of two parts: semantic subcode and stochastic subcode. By varying the stochastic subcode and keeping the semantic subcode fixed, stochastic details of the decoded image change but the overall high-level structure remains the same.
           <div id="stoc" style="text-align: center; max-width: 900px">
-            <span class='tablehead2'>Input</span>
+            <span class='tablehead2'>Real input image</span>
             <span class='tablehead2'>Reconstructed</span>
             <span class='tablehead2'>Varying stochastic subcode</span>
-            <span class='tablehead2'>Mean</span>
+            <span class='tablehead2'>Mean of the variation</span>
             <video style="max-width: 900px;" loop src="images/stoc_avg.mp4" autoplay muted></video>
           </div>
         </div>
@@ -664,7 +664,7 @@
       <div class="container" style="text-align: center; margin-top: 15px;">
         <h1 class="title shead">Attribute manipulation on <span style="color: #750d0d">REAL</span> images</h1>
       <div class="container" style="max-width:900px; text-align: left;">
-        To change the attributes of an input image, we simply encode the input image to our latent code, add the vector corresponding to the target change, and decode it back. The results shown below do not involve any image blending or post-processing. Unlike GANs, our method requires no inversion to manipulate real images and can well preserve the original details of the input image.</div>
+        To change the attributes of an input image, we simply encode the input image to our latent code, add the vector corresponding to the target change, and decode it back. The results shown below do not involve any image blending or post-processing. Unlike GANs, our method requires no inversion to manipulate real images and can well preserve the original details of the input image. </div>
         <!--<h2 class="title shead">Smiling</h2>-->
         <div id="am_smiling" class="attable"></div>
         <button class="button-7 moreresults" role="button">More Results!</button>
