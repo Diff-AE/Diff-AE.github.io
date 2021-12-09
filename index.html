@@ -240,7 +240,7 @@
     //const path = "./data/manipulation_Tinv500_Tgen100/";
     const path = "./data/website_results/";
     const path2 = "./data/image/";
-    const IMG_SIZE = 175;
+    const IMG_SIZE = 190;
 
     let animid = 0;
     let animdir = 1;
@@ -526,22 +526,22 @@
         var dataset_cfg = {
             "ffhq256": {
                "path": "data/Unconditional_Samples/ffhq256_my/",
-               "size": 140,
-               "row_size":7,
-               "n_img": 49
+               "size": 150,
+               "row_size":6,
+               "n_img": 48
             },
             "bedroom128": {
                 "path": "data/Unconditional_Samples/bedroom128_my/",
-                "size": 70,
-                "row_size":14,
-                "n_img": 52
+                "size": 75,
+                "row_size":4,
+                "n_img": 64
 
             },
             "horse128": {
                 "path":  "data/Unconditional_Samples/horse128_my/",
-                "size": 70,
-                "row_size":14,
-                "n_img": 52
+                "size": 75,
+                "row_size":4,
+                "n_img": 64
             }
         };
 
@@ -552,26 +552,14 @@
         let n_img = dataset_cfg[dataset]["n_img"]
 
         let out = "";
-        // let n_img =10;
         let mark = "";
         const w = img_size;
         const h = img_size;
         // out += "<div>" ;
         
-        for (const x of Array(Math.round(n_img/row_size)).keys()){
-          /*
-            if (x > 2 && false) {
-                out += "<div class='hide'>";
-            } 
-            else {
-                out += "<div>";
-            }*/
-            for (const y of Array(row_size).keys()){
-                out +=  `<img src='${path}${x*row_size+y}.png' width='${w}' height='${h}' class='${mark} imgresult'>` ;
-            } 
-            //out += "</div>";
+        for (let i = 0; i < n_img; i++) {
+          out +=  `<img src='${path}${i}.png' width='${w}' height='${h}' class='${mark} imgresult'>` ;
         }
-        // out += '<div>';
         return out;
 
         
@@ -757,9 +745,11 @@
   <hr>
   <section class="hero">
     <div class="hero-body">
-      <div class="container" style="max-width:980px; text-align: center; margin-top: 15px;" id="uncond">
+      <div class="container" style="max-width:1200px; text-align: center; margin-top: 15px;" id="uncond">
         <h1 class="title shead">Unconditional Sampling</h1>
-        By fitting the latent distribution with another diffusion model, our diffusion autoencoder can also synthesize images unconditionally with competitive FID scores compared to a vanilla diffusion model.
+        <div class="container" style="max-width:900px; text-align: left;">
+        By fitting the latent distribution of our diffusion autoencoder with another diffusion model, we can also synthesize images unconditionally with competitive FID scores compared to a vanilla diffusion model.
+        </div>
 
         <h2 class="title shead">FFHQ-256</h2>
         <div id="uncon_ffhq256" ></div>
