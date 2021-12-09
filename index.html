@@ -503,25 +503,6 @@
     }
 
 
-    function animation() {
-      $(".anim").each(function() {
-        //let src = $(this).attr("src");
-        //const sp = src.split("/");
-        //let newsrc = sp.slice(0, -1).join("/") + "/" + String(animid).padStart(5, '0') + ".png";
-        //$(this).attr("src", newsrc);
-        $(this).css("object-position", (-175 * (animid+1)) + "px 0");
-      });
-      animid += animdir;
-      if (animid < 0) {
-        animdir *= -1;
-        animid = 0;
-      }
-      if (animid >= animN) {
-        animdir *= -1;
-        animid = animN-1;
-      }
-    }
-
     function gen_unconditional(dataset = 'bedroom128'){
         var dataset_cfg = {
             "ffhq256": {
@@ -590,7 +571,13 @@
         $(this).prev().children(".hide").show();
         $(this).hide();
       });
-      setInterval(animation, 180);
+
+      $(".stopover").mouseover(function() {
+        $(this).get(0).pause();
+      }).mouseout(function() {
+        $(this).get(0).play();
+      });
+
     });
 
   </script>
@@ -688,8 +675,8 @@
             <span class='tablehead2'>Reconstructed</span>
             <span class='tablehead2'>Varying stochastic subcode</span>
             <span class='tablehead2'>Mean of the variation</span>
-            <video style="max-width: 900px;" loop src="images/stoc_avg.mp4" autoplay muted></video>
-            <video style="max-width: 900px;" loop src="images/stoc_avg3.mp4" autoplay muted></video>
+            <video class="stopover" style="max-width: 900px;" loop src="images/stoc_avg.mp4" autoplay muted></video>
+            <video class="stopover" style="max-width: 900px;" loop src="images/stoc_avg3.mp4" autoplay muted></video>
           </div>
         </div>
       </div>
