@@ -148,7 +148,7 @@
     .tablehead {
       display: inline-block; 
       text-align: center;
-      font-size: 20px;
+      font-size: 18px;
       font-weight: bold;
     }
     .imgresult {
@@ -160,11 +160,17 @@
       margin-top: 15px;
       margin-bottom: 5px;
     }
+    h3.am_head {
+      color: #666666;
+      font-size: 26px;
+      font-weight: bold;
+      margin-top: 30px;
+    }
 
 .button-7 {
-  background-color: #0095ff;
+  background-color: #750d0d;
   border: 1px solid transparent;
-  border-radius: 3px;
+  border-radius: 9px;
   box-shadow: rgba(255, 255, 255, .4) 0 1px 0 0 inset;
   box-sizing: border-box;
   color: #fff;
@@ -280,7 +286,9 @@
     };
 
     const male = {
-      name: "Male",
+      name: "Gender Change",
+      neg: "Female",
+      pos: "Male",
       prefix: "Male",
       mark: "original",
       list: [
@@ -299,7 +307,9 @@
     };
 
     const young = {
-      name: "Age",
+      name: "Aging",
+      neg: "- Age",
+      pos: "+ Age",
       prefix: "Young",
       mark: "original",
       list: [
@@ -315,6 +325,36 @@
         "ffhq-4022",
         "ffhq-4042",
         //"ffhq-4089",
+      ]
+    };
+    const glasses = {
+      name: "Adding Eyeglasses",
+      prefix: "Eyeglasses",
+      mark: "original",
+      list: [
+        "ffhq-10420",
+        "ffhq-10920",
+        "ffhq-10660",
+        "ffhq-10820",
+        "ffhq-10190",
+        "ffhq-10290",
+        "ffhq-10090",
+        "ffhq-10350",
+      ]
+    };
+
+    const unglasses = {
+      name: "Removing Eyeglasses",
+      prefix: "Eyeglasses",
+      mark: "original",
+      list: [
+        "ffhq-2513",
+        "ffhq-30667",
+        "ffhq-23426",
+        "ffhq-26758",
+        "ffhq-30280",
+        "ffhq-18313",
+        "ffhq-19347",
       ]
     };
 
@@ -355,11 +395,13 @@
       ]
     };
 
-    function genTable2(attr) {
-      let out = "";
+    function genTable2(attr, header="") {
+      let out = `<h3 class='am_head'>${attr["name"]}</h3>`;
       const width = IMG_SIZE;
-      const text = [`- ${attr["name"]}`, `<img src='images/arrow.png' style='height: 15px !important;'>`, `<span style='color: #C00000'>Real Input</span>`, `<img src='images/arrow.png' style='height: 15px !important; -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);'>`, `+ ${attr["name"]}`, `Animated`];
+      let text = ["neg" in attr ? `${attr["neg"]}` : `- ${attr["name"]}`, 
+        `<img src='images/arrow.png' style='height: 15px !important;'>`, `<span style='color: #C00000'>Real Input</span>`, `<img src='images/arrow.png' style='height: 15px !important; -webkit-transform: scaleX(-1); transform: scaleX(-1);'>`, "pos" in attr ? `${attr["pos"]}` : `+ ${attr["name"]}`, `Animated`];
+      if (header != "")
+        text = header;
 
       for (let i = 0; i < text.length; i++) {
         out += `<span class='tablehead' style='max-width: ${width}px; width: 16%; ${i == text.length-1 ? "margin-left: 6px" : ""}'>${text[i]}</span>`;
@@ -541,6 +583,12 @@
 
       $("#am_wavy").html(genTable2(wavy));
       $("#am_male").html(genTable2(male));
+      const rightarrow = `<img src='images/arrow.png' style='height: 15px !important; -webkit-transform: scaleX(-1); transform: scaleX(-1);'>`;
+      let header = [`<span style='color: #C00000'>Real Input</span>`, rightarrow, rightarrow, rightarrow, `+ Glasses`, `Animated`];
+      $("#am_glasses").html(genTable2(glasses, header));
+      header[4] = '- Glasses';
+      $("#am_unglasses").html(genTable2(unglasses, header));
+
       $("#inter_ffhq").html(genTable3(ffhq, 175));
       $("#inter_horse").append(genTable3(horse, 110));
       $("#inter_bed").append(genTable3(bed, 110));
@@ -665,16 +713,19 @@
       <div class="container" style="text-align: center; margin-top: 15px;">
         <h1 class="title shead">Attribute manipulation on <span style="color: #750d0d">REAL</span> images</h1>
       <div class="container" style="max-width:900px; text-align: left;">
-        To change the attributes of an input image, we simply encode the input image to our latent code, add the vector corresponding to the target change, and decode it back. The results shown below do not involve any image blending or post-processing. Unlike GANs, our method requires no inversion to manipulate real images and can well preserve the original details of the input image. </div>
-        <!--<h2 class="title shead">Smiling</h2>-->
+        To change a semantic attribute in an input image, we simply encode the input image to our latent code, add the vector corresponding to the target change, and decode it back. The results shown below do not involve any image blending or post-processing, and we only trained the autoencoder once and use it to manipulate all these different attributes. Unlike GANs, our method requires no inversion to manipulate real images and can well preserve the original details of the input image. </div>
         <div id="am_smiling" class="attable"></div>
-        <button class="button-7 moreresults" role="button">More Results!</button>
+        <button class="button-7 moreresults" role="button">More Results</button>
         <div id="am_young" class="attable"></div>
-        <button class="button-7 moreresults" role="button">More Results!</button>
+        <button class="button-7 moreresults" role="button">More Results</button>
         <div id="am_wavy" class="attable"></div>
-        <button class="button-7 moreresults" role="button">More Results!</button>
+        <button class="button-7 moreresults" role="button">More Results</button>
         <div id="am_male" class="attable"></div>
-        <button class="button-7 moreresults" role="button">More Results!</button>
+        <button class="button-7 moreresults" role="button">More Results</button>
+        <div id="am_glasses" class="attable"></div>
+        <button class="button-7 moreresults" role="button">More Results</button>
+        <div id="am_unglasses" class="attable"></div>
+        <button class="button-7 moreresults" role="button">More Results</button>
       </div>
     </div>
   </section>
