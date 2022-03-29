@@ -650,7 +650,7 @@
     <div class="container" style="width: 900px">
       <span style="display: block; font-size: 14px; line-height: 1.1em; margin-bottom: 3em;">
         Figure: <b>Overview of our diffusion autoencoder.</b> The autoencoder consists of a “semantic” encoder that maps the input image
-        to the semantic subcode (x<sub>0</sub> → z<sub>sem</sub>), and a conditional DDIM that acts both as a “stochastic” encoder (x<sub>0</sub> →x<sub>T</sub> ) and a decoder ((z<sub>sem</sub>, x<sub>T</sub>)→ x<sub>0</sub>). Here, zsem captures high-level semantics, while xT captures low-level stochastic variations, and together they can be decoded back to the original image with high fidelity. To sample from this autoencoder, we fit a latent DDIM to the distribution of z<sub>sem</sub> and sample (z<sub>sem</sub>, x<sub>T</sub> ∼N(0, I)) for decoding</span>
+        to the semantic subcode (x<sub>0</sub> → z<sub>sem</sub>), and a conditional DDIM that acts both as a “stochastic” encoder (x<sub>0</sub> →x<sub>T</sub> ) and a decoder ((z<sub>sem</sub>, x<sub>T</sub>)→ x<sub>0</sub>). Here, zsem captures high-level semantics, while xT captures low-level stochastic variations, and together they can be decoded back to the original image almost exactly. To sample from this autoencoder, we fit a latent DDIM to the distribution of z<sub>sem</sub> and sample (z<sub>sem</sub>, x<sub>T</sub> ∼N(0, I)) for decoding.</span>
     </div>
   </section>
 
