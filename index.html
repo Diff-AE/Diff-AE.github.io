@@ -628,7 +628,7 @@
     </div>
     <div class="container" style="width: 1100px">
       <span style="display: block; font-size: 14px; position: relative; top: -10px; line-height: 1.1em;">
-        Figure: <b>Attribute manipulation and interpolation on real images</b>. Diffusion autoencoders can encode any image into a two-part latent code that captures both semantics and stochastic variations and allows near-exact reconstruction. This latent code can be interpolated or modified by a simple linear operation and decoded back to a highly realistic output for various downstream tasks. </span>
+        <b>Figure: Attribute manipulation and interpolation on real images</b>. Diffusion autoencoders can encode any image into a two-part latent code that captures both semantics and stochastic variations and allows near-exact reconstruction. This latent code can be interpolated or modified by a simple linear operation and decoded back to a highly realistic output for various downstream tasks. </span>
     </div>
   </section>
   <section class="hero">
@@ -649,7 +649,7 @@
     </div>
     <div class="container" style="width: 900px">
       <span style="display: block; font-size: 14px; line-height: 1.1em; margin-bottom: 3em;">
-        Figure: <b>Overview of our diffusion autoencoder.</b> The autoencoder consists of a “semantic” encoder that maps the input image
+        <b>Figure: Overview of our diffusion autoencoder.</b> The autoencoder consists of a “semantic” encoder that maps the input image
         to the semantic subcode (x<sub>0</sub> → z<sub>sem</sub>), and a conditional DDIM that acts both as a “stochastic” encoder (x<sub>0</sub> →x<sub>T</sub> ) and a decoder ((z<sub>sem</sub>, x<sub>T</sub>)→ x<sub>0</sub>). Here, zsem captures high-level semantics, while xT captures low-level stochastic variations, and together they can be decoded back to the original image almost exactly. To sample from this autoencoder, we fit a latent DDIM to the distribution of z<sub>sem</sub> and sample (z<sub>sem</sub>, x<sub>T</sub> ∼N(0, I)) for decoding.</span>
     </div>
   </section>
@@ -742,7 +742,8 @@
       <div class="container" style="text-align: center; margin-top: 15px;">
         <h1 class="title shead">Attribute manipulation on <span style="color: #750d0d">REAL</span> images</h1>
       <div class="container" style="max-width:900px; text-align: left;">
-        To change a semantic attribute in an input image, we simply encode the input image to a latent code, add the vector corresponding to the target change, and decode it back. The results shown below do not involve any image blending or post-processing, and we only trained the autoencoder once and used it to manipulate all these different attributes. Unlike GANs, our method requires no inversion to manipulate real images and can well preserve the original details of the input image. </div>
+        To change a semantic attribute in an input image, we simply encode the input image to a latent code, add the vector corresponding to the target change, and decode it back. The results shown below do not involve any image blending or post-processing, and we only trained the autoencoder once and used it to manipulate all these different attributes. Unlike GANs, our method requires no inversion to manipulate real images and can well preserve the original details of the input image. <br> *Notice how adding eyeglasses comes with realistic shadows and removing ones undoes the refraction effect of the lens.
+      </div>
         <div id="am_smiling" class="attable"></div>
         <button class="button-7 moreresults" role="button">More Results</button>
         <div id="am_young" class="attable"></div>
